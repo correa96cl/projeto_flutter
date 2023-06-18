@@ -34,10 +34,7 @@ class _Homepage extends State<Homepage> {
     ];
 
     final List<Widget> _conteudos = [
-      AfazeresTab(
-        valorInicial: 0,
-        callback: handleTab,
-      ),
+      AfazeresTab(),
       const PerfilTab()
     ];
 
