@@ -73,7 +73,20 @@ class _AfazeresTab extends State<AfazeresTab> {
                       handleExcluir(index);
                     }
                   },
-                  child: Text(item.titulo));
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 7),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(
+                          item.isConcluido == true ? Icons.done_all : Icons.check_sharp,
+color: item.isConcluido == true ? Colors.green: Colors.greenAccent,
+                          
+                        ),
+                    title: Text(item.titulo),
+                    trailing: IconButton(onPressed: (){}, icon: Icon(Icons.keyboard_arrow_right_rounded, size: 26,)),
+                      ),
+                    ),
+                  ));//Text(item.titulo));
             },
           ),
         ),
