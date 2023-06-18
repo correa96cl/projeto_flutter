@@ -78,15 +78,23 @@ class _AfazeresTab extends State<AfazeresTab> {
                     child: Card(
                       child: ListTile(
                         leading: Icon(
-                          item.isConcluido == true ? Icons.done_all : Icons.check_sharp,
-color: item.isConcluido == true ? Colors.green: Colors.greenAccent,
-                          
+                          item.isConcluido == true
+                              ? Icons.done_all
+                              : Icons.check_sharp,
+                          color: item.isConcluido == true
+                              ? Colors.green
+                              : Colors.greenAccent,
                         ),
-                    title: Text(item.titulo),
-                    trailing: IconButton(onPressed: (){}, icon: Icon(Icons.keyboard_arrow_right_rounded, size: 26,)),
+                        title: Text(item.titulo),
+                        trailing: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.keyboard_arrow_right_rounded,
+                              size: 26,
+                            )),
                       ),
                     ),
-                  ));//Text(item.titulo));
+                  )); //Text(item.titulo));
             },
           ),
         ),
