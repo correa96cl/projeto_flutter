@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/space_component.dart';
 import 'package:projeto_flutter/entities/afazer_entity.dart';
+import 'package:projeto_flutter/pages/home/components/item_widget.dart';
+import 'package:projeto_flutter/pages/home/components/novo_item_widget.dart';
 
 class AfazeresTab extends StatefulWidget {
   const AfazeresTab({super.key});
@@ -13,18 +15,24 @@ class _AfazeresTab extends State<AfazeresTab> {
   late List<AFazerEntity> _listaAfazeres;
 
   void handleAdicionar() {
-    final item = AFazerEntity(
-        uuid: 'teste 03',
-        titulo: 'titulo 03',
-        dataInicio: DateTime.now(),
-        dataFim: DateTime.now(),
-        isConcluido: false);
-
-    _listaAfazeres.add(item);
-
-    setState(() {
-      _listaAfazeres = _listaAfazeres;
-    });
+    showDialog(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          contentPadding: const EdgeInsets.all(16),
+          children: [
+            NovoItemWidget(
+              callback: (item) {
+                _listaAfazeres.add(item);
+                setState(() {
+                  _listaAfazeres = _listaAfazeres;
+                });
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void handleExcluir(int index) {
@@ -74,27 +82,11 @@ class _AfazeresTab extends State<AfazeresTab> {
                     }
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 7),
-                    child: Card(
-                      child: ListTile(
-                        leading: Icon(
-                          item.isConcluido == true
-                              ? Icons.done_all
-                              : Icons.check_sharp,
-                          color: item.isConcluido == true
-                              ? Colors.green
-                              : Colors.greenAccent,
-                        ),
-                        title: Text(item.titulo),
-                        trailing: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.keyboard_arrow_right_rounded,
-                              size: 26,
-                            )),
-                      ),
-                    ),
-                  )); //Text(item.titulo));
+                      padding: const EdgeInsets.only(bottom: 7),
+                      child: ItemWidget(
+                        item: item,
+                        onPressed: () {},
+                      ))); //Text(item.titulo));
             },
           ),
         ),

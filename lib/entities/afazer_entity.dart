@@ -10,7 +10,7 @@ class AFazerEntity {
   String? image;
 
   AFazerEntity({required this.uuid, required this.titulo, required this.dataInicio, required this.dataFim, 
-  required this.isConcluido,  this.conteudos,  this.image});
+  this.isConcluido,  this.conteudos,  this.image});
 
 
 }
