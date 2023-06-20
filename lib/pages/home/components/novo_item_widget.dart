@@ -79,12 +79,13 @@ class _NovoItemWidgetState extends State<NovoItemWidget> {
 
 
       items.add(TextEditingController(
- 
       ));
 
-             setState(() {
+                 setState(() {
           items = items;
-        };
+        });
+
+  
     }
   }
 
@@ -111,7 +112,7 @@ class _NovoItemWidgetState extends State<NovoItemWidget> {
               DropdownButton(
                   onChanged: (value) {
                     setState(() {
-                      dropdownValue = value;
+                      dropdownValue = value!;
                     });
                   },
                   value: TipoLista.lembrete,
