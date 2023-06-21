@@ -3,6 +3,8 @@ import 'package:projeto_flutter/components/icon_button_component.dart';
 import 'package:projeto_flutter/components/space_component.dart';
 import 'package:projeto_flutter/entities/aFazerCheckList_entity.dart';
 import 'package:projeto_flutter/entities/afazer_entity.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/uuid_util.dart';
 
 class NovoItemWidget extends StatefulWidget {
   final void Function(AFazerEntity item) callback;
@@ -25,16 +27,20 @@ class _NovoItemWidgetState extends State<NovoItemWidget> {
 
   TipoLista dropdownValue = TipoLista.lembrete;
 
-  Widget defaultCheckItem(TextEditingController controller){
-    return CheckboxListTile(title: TextFormField(controller: controller, 
-    decoration: const InputDecoration(hintText: 'Digite um nome para a tarefa' ), validator: (value){
-      return (value == null|| value.isEmpty) ? 'Digite um nome': null;
-    },
-    ),
-    controlAffinity: ListTileControlAffinity.leading,
-    contentPadding: const EdgeInsets.all(0),
-    value: false,
-    onChanged: null,
+  Widget defaultCheckItem(TextEditingController controller) {
+    return CheckboxListTile(
+      title: TextFormField(
+        controller: controller,
+        decoration:
+            const InputDecoration(hintText: 'Digite um nome para a tarefa'),
+        validator: (value) {
+          return (value == null || value.isEmpty) ? 'Digite um nome' : null;
+        },
+      ),
+      controlAffinity: ListTileControlAffinity.leading,
+      contentPadding: const EdgeInsets.all(0),
+      value: false,
+      onChanged: null,
     );
   }
 
@@ -42,9 +48,10 @@ class _NovoItemWidgetState extends State<NovoItemWidget> {
     final isValido = _formKey.currentState!.validate();
 
     if (isValido) {
+      print(Uuid().v4());
       //
       final item = AFazerEntity(
-        uuid: 'Porrra',
+        uuid: const Uuid().v4(),
         titulo: _titleController.text,
         dataInicio: DateTime.now(),
         dataFim: DateTime.now(),
@@ -52,40 +59,34 @@ class _NovoItemWidgetState extends State<NovoItemWidget> {
       );
 
       bool valid = false;
-      if (dropdownValue == TipoLista.tarefa){
+      if (dropdownValue == TipoLista.tarefa) {
         final isTarefasValidas = _formKeyTarefas.currentState!.validate();
 
-        if (isTarefasValidas){
+        if (isTarefasValidas) {
           valid = true;
-          for (final value in items){
-                      item.conteudos!.add(AFazerChecklistEntity(titulo: value.text, isChecked: true));
-
+          for (final value in items) {
+            item.conteudos!.add(
+                AFazerChecklistEntity(titulo: value.text, isChecked: true));
           }
         }
-      }else {
-        valid  = true;
+      } else {
+        valid = true;
       }
 
-      if (valid){
-      widget.callback(item);
-      Navigator.pop(context);
+      if (valid) {
+        widget.callback(item);
+        Navigator.pop(context);
       }
-     
     }
   }
 
   void addItem() {
     if (dropdownValue == TipoLista.tarefa) {
+      items.add(TextEditingController());
 
-
-      items.add(TextEditingController(
-      ));
-
-                 setState(() {
-          items = items;
-        });
-
-  
+      setState(() {
+        items = items;
+      });
     }
   }
 

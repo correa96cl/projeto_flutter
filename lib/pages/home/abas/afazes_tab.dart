@@ -3,6 +3,7 @@ import 'package:projeto_flutter/components/space_component.dart';
 import 'package:projeto_flutter/entities/afazer_entity.dart';
 import 'package:projeto_flutter/pages/home/components/item_widget.dart';
 import 'package:projeto_flutter/pages/home/components/novo_item_widget.dart';
+import 'package:projeto_flutter/services/afazer_service.dart';
 
 class AfazeresTab extends StatefulWidget {
   const AfazeresTab({super.key});
@@ -13,6 +14,7 @@ class AfazeresTab extends StatefulWidget {
 
 class _AfazeresTab extends State<AfazeresTab> {
   late List<AFazerEntity> _listaAfazeres;
+  final service = AFazerService();
 
   void handleAdicionar() {
     showDialog(
@@ -23,6 +25,7 @@ class _AfazeresTab extends State<AfazeresTab> {
           children: [
             NovoItemWidget(
               callback: (item) {
+                service.salvar(_listaAfazeres);
                 _listaAfazeres.add(item);
                 setState(() {
                   _listaAfazeres = _listaAfazeres;
