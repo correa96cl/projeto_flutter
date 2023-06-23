@@ -13,6 +13,11 @@ class AFazerService {
   }
 
   Future<List<AFazerEntity>> buscar() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? listJson = prefs.getString(_key);
+    if (listJson != null) {
+      return AFazerEntity.fromJsonList(jsonDecode(listJson));
+    }
     return [];
   }
 }

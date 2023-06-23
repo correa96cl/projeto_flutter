@@ -14,7 +14,7 @@ class PerfilTab extends StatelessWidget {
         Card(
             margin: const EdgeInsets.all(0),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: [
                   const CircleAvatar(child: Text('M')),
@@ -41,8 +41,8 @@ class PerfilTab extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        Row(
-          children: const [
+        const Row(
+          children: [
             Icon(Icons.list),
             SizedBox(
               height: 8,
@@ -51,8 +51,8 @@ class PerfilTab extends StatelessWidget {
             Text('0'),
           ],
         ),
-        Row(
-          children: const [
+        const Row(
+          children: [
             Icon(Icons.checklist),
             SizedBox(
               height: 8,

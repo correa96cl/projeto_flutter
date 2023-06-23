@@ -27,24 +27,24 @@ class _Homepage extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<BottomNavigationBarItem> _abas = [
+    final List<BottomNavigationBarItem> abas = [
       const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
       const BottomNavigationBarItem(
           icon: Icon(Icons.account_circle), label: 'Perfil'),
     ];
 
-    final List<Widget> _conteudos = [
-      AfazeresTab(),
+    final List<Widget> conteudos = [
+      const AfazeresTab(),
       const PerfilTab()
     ];
 
     return Scaffold(
       appBar: const AppBarComponent(),
-      body: _conteudos.elementAt(abaSeleccionada),
+      body: conteudos.elementAt(abaSeleccionada),
       bottomNavigationBar: BottomNavigationBar(
         onTap: handleTab,
         currentIndex: abaSeleccionada,
-        items: _abas,
+        items: abas,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){

@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: "School",
       home: Scaffold(
         body: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

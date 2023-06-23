@@ -25,7 +25,7 @@ class AFazerEntity {
       dataInicio: DateTime.fromMicrosecondsSinceEpoch(json['dataInicio']),
       dataFim: DateTime.fromMicrosecondsSinceEpoch(json['dataFim']),
       isConcluido: json['isConcluido'],
-      conteudos: json['conteudos'],
+      conteudos: AFazerChecklistEntity.fromJsonList(json['conteudos']),
       image: json['image'],
     );
   }

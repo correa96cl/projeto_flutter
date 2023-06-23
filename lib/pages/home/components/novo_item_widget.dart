@@ -4,7 +4,6 @@ import 'package:projeto_flutter/components/space_component.dart';
 import 'package:projeto_flutter/entities/aFazerCheckList_entity.dart';
 import 'package:projeto_flutter/entities/afazer_entity.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
 
 class NovoItemWidget extends StatefulWidget {
   final void Function(AFazerEntity item) callback;
@@ -48,7 +47,7 @@ class _NovoItemWidgetState extends State<NovoItemWidget> {
     final isValido = _formKey.currentState!.validate();
 
     if (isValido) {
-      print(Uuid().v4());
+      print(const Uuid().v4());
       //
       final item = AFazerEntity(
         uuid: const Uuid().v4(),
@@ -164,7 +163,7 @@ class _NovoItemWidgetState extends State<NovoItemWidget> {
           const SpacerComponent(),
           ElevatedButton(
             onPressed: handleSubmit,
-            child: Text('Cadastrar'),
+            child: const Text('Cadastrar'),
           )
         ],
       ),
