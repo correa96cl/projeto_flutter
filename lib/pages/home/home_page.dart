@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/app_bar_component.dart';
+import 'package:projeto_flutter/components/body_component.dart';
 import 'package:projeto_flutter/pages/home/abas/afazes_tab.dart';
 import 'package:projeto_flutter/pages/home/abas/perfil_tab.dart';
+import 'package:projeto_flutter/providers/afazer_provider.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,6 +14,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _Homepage extends State<Homepage> {
+  late AFazerProvider store;
   late int abaSeleccionada;
 
   void handleTab(int tabIdx) {
@@ -22,6 +26,7 @@ class _Homepage extends State<Homepage> {
   @override
   void initState() {
     abaSeleccionada = 0;
+    store = Provider.of<AFazerProvider>(context, listen: false);
     super.initState();
   }
 
@@ -33,24 +38,15 @@ class _Homepage extends State<Homepage> {
           icon: Icon(Icons.account_circle), label: 'Perfil'),
     ];
 
-    final List<Widget> conteudos = [
-      const AfazeresTab(),
-      const PerfilTab()
-    ];
+    final List<Widget> conteudos = [const AfazeresTab(), const PerfilTab()];
 
-    return Scaffold(
-      appBar: const AppBarComponent(),
-      body: conteudos.elementAt(abaSeleccionada),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: handleTab,
+    return BodyComponent(
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
+      bar: BottomNavigationBar(
+        items: _abas,
         currentIndex: abaSeleccionada,
-        items: abas,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          handleTab(1);
-        },
-        child: const Icon(Icons.add),
+        onTap: handleTab,
       ),
     );
   }

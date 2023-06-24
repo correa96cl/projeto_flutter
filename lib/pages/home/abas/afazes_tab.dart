@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/components/space_component.dart';
+import 'package:projeto_flutter/app_routes.dart';
+import 'package:projeto_flutter/entities/afazer_entity.dart';
 import 'package:projeto_flutter/pages/home/components/item_widget.dart';
-import 'package:projeto_flutter/pages/home/components/novo_item_widget.dart';
 import 'package:projeto_flutter/providers/afazer_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -13,28 +13,14 @@ class AfazeresTab extends StatefulWidget {
 }
 
 class _AfazeresTab extends State<AfazeresTab> {
-late AFazerProvider store;  
-
-  void handleAdicionar() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          contentPadding: const EdgeInsets.all(16),
-          children: [
-            NovoItemWidget(
-              callback: (item) {
-               store.listaAfazeres = [...store.listaAfazeres, item];
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  late AFazerProvider store;
 
   void handleExcluir(int index) {
+    store.removeItemAFazer(index);
+  }
 
+  void onDetalhes(AFazerEntity item, int index) {
+    Navigator.pushNamed(context, AppRoutes.detalhe);
   }
 
   @override
@@ -42,42 +28,40 @@ late AFazerProvider store;
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     store = Provider.of<AFazerProvider>(context);
 
-    return Column(
+    return ListView.builder(
+      itemCount: store.listaAfazeres.length,
+      itemBuilder: (context, index) {
+        final item = store.listaAfazeres.elementAt(index);
+        return Dismissible(
+            key: Key(item.uuid),
+            onDismissed: (direction) {
+              if (direction == DismissDirection.startToEnd) {
+                handleExcluir(index);
+              }
+            },
+            child: Padding(
+                padding: const EdgeInsets.only(bottom: 7),
+                child: ItemWidget(
+                  item: item,
+                  onPressed: () {
+                    onDetalhes(item, index);
+                  },
+                ))); //Text(item.titulo));
+      },
+    );
+
+    /*return Column(
       children: [
-        ElevatedButton(
-            onPressed: handleAdicionar, child: const Text('Adicionar')),
         SizedBox(
           width: MediaQuery.of(context).size.width,
           height: 400,
-          child: ListView.builder(
-            itemCount: store.listaAfazeres.length,
-            itemBuilder: (context, index) {
-              final item = store.listaAfazeres.elementAt(index);
-              return Dismissible(
-                  key: Key(item.uuid),
-                  onDismissed: (direction) {
-                    if (direction == DismissDirection.startToEnd) {
-                      handleExcluir(index);
-                    }
-                  },
-                  child: Padding(
-                      padding: const EdgeInsets.only(bottom: 7),
-                      child: ItemWidget(
-                        item: item,
-                        onPressed: () {},
-                      ))); //Text(item.titulo));
-            },
-          ),
-        ),
+          child: ,        ),
         const SpacerComponent(),
       ],
-    );
+    );*/
   }
 }

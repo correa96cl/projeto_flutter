@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/pages/home/home_page.dart';
+import 'package:projeto_flutter/app_routes.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -7,9 +7,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'School',
-      home: Homepage()
+     routes: AppRoutes.routes(),
     );
   }
 }

@@ -47,7 +47,6 @@ class _NovoItemWidgetState extends State<NovoItemWidget> {
     final isValido = _formKey.currentState!.validate();
 
     if (isValido) {
-      print(const Uuid().v4());
       //
       final item = AFazerEntity(
         uuid: const Uuid().v4(),
