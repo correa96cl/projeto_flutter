@@ -10,6 +10,18 @@ class DetalheHeaderWidget extends StatelessWidget {
   const DetalheHeaderWidget(
       {super.key, required this.item, required this.onEdit});
 
+  Widget makeImage() {
+    print('Hola');
+
+    if (item.image != null) {
+      return Image.memory(
+        PickerService().decodebase64(item.image!),
+        fit: BoxFit.cover,
+      );
+    }
+    return const Icon(Icons.image_search, size: 100);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -51,14 +63,5 @@ class DetalheHeaderWidget extends StatelessWidget {
     );
   }
 
-  makeImage() {
-    if (item.image != null){
-      return Image.memory(PickerService().decodebase64(item.image!),
-      fit: BoxFit.cover,);
-    }
-    return const Icon(
-      Icons.image_search,
-      size: 100,
-    );
-  }
+
 }

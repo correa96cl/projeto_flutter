@@ -19,7 +19,7 @@ this.actionButtom});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarComponent(),
+      appBar: const AppBarComponent(),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

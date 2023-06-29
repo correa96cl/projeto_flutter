@@ -2,7 +2,7 @@ class AFazerChecklistEntity {
   String titulo;
   bool isChecked;
 
-  AFazerChecklistEntity({required this.titulo, required this.isChecked});
+  AFazerChecklistEntity({required this.titulo, this.isChecked = false});
 
   Map<String, dynamic> toJson() {
     return {

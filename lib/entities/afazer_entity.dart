@@ -6,7 +6,7 @@ class AFazerEntity {
   DateTime dataInicio;
   DateTime dataFim;
   bool? isConcluido;
-  List<AFazerChecklistEntity>? conteudos;
+  List<AFazerChecklistEntity> conteudos;
   String? image;
 
   AFazerEntity(

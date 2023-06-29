@@ -16,10 +16,11 @@ class _AfazeresTab extends State<AfazeresTab> {
   late AFazerProvider store;
 
   void handleExcluir(int index) {
-    store.removeItemAFazer(index);
+    store.removerItemAfazer(index);
   }
 
   void onDetalhes(AFazerEntity item, int index) {
+    store.selecionado = item;
     Navigator.pushNamed(context, AppRoutes.detalhe);
   }
 
@@ -43,25 +44,12 @@ class _AfazeresTab extends State<AfazeresTab> {
                 handleExcluir(index);
               }
             },
-            child: Padding(
-                padding: const EdgeInsets.only(bottom: 7),
-                child: ItemWidget(
-                  item: item,
-                  onPressed: () {
-                    onDetalhes(item, index);
-                  },
-                ))); //Text(item.titulo));
+            child: ItemWidget(
+                item: item,
+                onPressed: () {
+                  onDetalhes(item, index);
+                })); //Text(item.titulo));
       },
     );
-
-    /*return Column(
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: 400,
-          child: ,        ),
-        const SpacerComponent(),
-      ],
-    );*/
   }
 }

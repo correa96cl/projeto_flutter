@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/components/app_bar_component.dart';
 import 'package:projeto_flutter/components/body_component.dart';
 import 'package:projeto_flutter/pages/home/abas/afazes_tab.dart';
 import 'package:projeto_flutter/pages/home/abas/perfil_tab.dart';
@@ -44,10 +43,17 @@ class _Homepage extends State<Homepage> {
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
       bar: BottomNavigationBar(
-        items: _abas,
+        items: abas,
         currentIndex: abaSeleccionada,
         onTap: handleTab,
       ),
+      actionButtom: FloatingActionButton(
+        onPressed: () {
+          store.abrirModalCadastro(context);
+        },
+        child: const Icon(Icons.add),
+      ),
+      child: conteudos.elementAt(abaSeleccionada),
     );
   }
 }
